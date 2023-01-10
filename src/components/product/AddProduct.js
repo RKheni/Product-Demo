@@ -1,7 +1,11 @@
 import React, { useState } from 'react'
 import commonStyles from "./productCSS/CommonStyles.module.css"
+import { useNavigate } from 'react-router-dom'
+
 
 function AddProduct() {
+
+  const navigate = useNavigate();
 
     const [name, setName] = useState('');
     const [brand, setBrand] = useState('');
@@ -32,11 +36,47 @@ function AddProduct() {
         }
       }
 
+      const submitHandler = (e) => {
+        e.preventDefault();
+        
+        const data = {
+          name: name,
+          brand: brand,
+          price: price,
+          description: description,
+          category: category,
+          isActive: isActive,
+        };
+
+        const url = "https://cricketecommerce.onrender.com/Products";
+        const token = "Berear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNDNlMjQ0ZmMzOWNhYTk2MjNiZDAwNCIsImlhdCI6MTY3MzMzNDc5NiwiZXhwIjoxNjczMzU2Mzk2fQ.C-v7nP1-nTPBoOILRZDCbjYXN69vMS1R193l3QQ04dA"
+
+        // API Implement using POST Method
+        fetch(url, {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-type': 'application/json',
+            'Authorization': token
+          },
+        })
+        .then((response) => {
+          console.log("Add response----", response);
+          if(response.state === 200) {
+            alert("Success");
+          }
+          // Navigate to Home page
+          navigate('/productPage');
+        }).catch(e => {
+          console.log("Product Failed to Add due to: ", e.message)
+        }) 
+      }
+
   return (
     <>
-     {/* Book Room Form */}
+     {/* Add Product Form */}
      <div className={commonStyles.container}>
-     <form className={commonStyles.form}>
+     <form className={commonStyles.form} onSubmit={submitHandler}>
        <h3 className={commonStyles.title}>Add Product</h3>
          <div className="form-group row my-2">
              <label className="col-sm-5 col-form-label">Name</label>
