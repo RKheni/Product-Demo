@@ -31,8 +31,11 @@ function Login() {
             'Content-type': 'application/json'
           },
         })
-        .then(response=> {
-          return response.json() })
+        .then(response => { return response.json() })
+        .then(data => {
+          localStorage.setItem("token", data.token)
+          // logResponse("loginResponse", `localStorage set with token value: ${data.token}`)
+        })
         .then((res) => {
           console.log(res)
           // Navigate to Product page

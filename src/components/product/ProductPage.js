@@ -8,8 +8,8 @@ function ProductPage() {
   const navigate = useNavigate();
   
   const [products, setProducts] = useState([]);
-  const [detail, setDetail] = useState({
-    _id: '',
+  const [modeldata, setModeldata] = useState({
+    id: '',
     name: '',
     brand: '',
     price: 0,
@@ -18,24 +18,32 @@ function ProductPage() {
     isActive: ''
   });
 
-    useEffect(() => {
-        const url = "https://cricketecommerce.onrender.com/Products";
+    const getData = () => {
+      const url = "https://cricketecommerce.onrender.com/Products";
 
-        // API Implement using GET Method
-          fetch(url).then(response => response.json())
+        // API Call -  GET Method
+          fetch(url)
+          .then(response => response.json())
           .then(res => { 
             console.log("Product Page res---", res);
             setProducts(res?.data);
           }).catch(e => {
              console.log("e", e)
           })
+    }
+
+    useEffect(() => {
+        getData();
     }, []);
 
     // Show Product Detail
     const showDetail = (id) => {
+      console.log('Show Details-----');
       fetch(`https://cricketecommerce.onrender.com/Products/${id}`)
         .then(response => response.json())
-        .then(res => setDetail(res))
+        .then(res => {
+          console.log('single data-----')
+          setModeldata(res) })
     }
 
   return (
@@ -84,47 +92,46 @@ function ProductPage() {
             </table>
         </form>
 
-      {/* Modal Box  */}
+        {/* 
+ Model Box  */}
+ 
       <div className="modal" id="myModal">
         <div className="modal-dialog" style={{width:"700px"}}>
           <div className="modal-content">
             <div className="modal-header">
-              <h4 className="modal-title">No : {detail._id}</h4>
+              <h4 className="modal-title">ID : {modeldata.id}</h4>
               <button type="button" className="close" data-dismiss="modal">&times;</button>
             </div>
              
             <div className="modal-body">
-            <table className="table table-striped table-sm">
+              <table className="table table-striped table-sm">
                         <thead className="thead-light">
                             <tr>
-                              <th>ID</th>
-                              <th>Name</th>
-                              <th>Brand</th>
-                              <th>Price</th>
-                              <th>Description</th>  
-                              <th>Category</th>
-                              <th>isActive</th>
+                                <th>Name</th>
+                                <th>Brand</th>
+                                <th>Price</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                                <th>isActive</th>
                             </tr>
                         </thead>
-
                         <tbody>
                            <tr >
-                            <td>{detail._id}</td>
-                            <td>{detail.name}</td>
-                            <td>{detail.brand}</td>
-                            <td>{detail.price}</td>
-                            <td>{detail.description}</td>     
-                            <td>{detail.category}</td>  
-                            <td>{detail.isActive}</td>        
-                           </tr>
+                              <td>{modeldata.name}</td>
+                              <td>{modeldata.brand}</td>
+                              <td>{modeldata.price}</td>
+                              <td>{modeldata.description}</td>
+                              <td>{modeldata.category}</td>
+                              <td>{modeldata.isActive}</td>
+                            </tr>
                         </tbody>
-                    </table>
+              </table>
             </div>
              
             <div className="modal-footer">
               <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
             </div>
-             
+
           </div>
         </div>
       </div>

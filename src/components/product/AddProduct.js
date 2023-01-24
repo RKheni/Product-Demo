@@ -36,9 +36,12 @@ function AddProduct() {
         }
       }
 
+      // Submit Handler Function 
       const submitHandler = (e) => {
         e.preventDefault();
         
+        const url = "https://cricketecommerce.onrender.com/Products";
+
         const data = {
           name: name,
           brand: brand,
@@ -48,17 +51,17 @@ function AddProduct() {
           isActive: isActive,
         };
 
-        const url = "https://cricketecommerce.onrender.com/Products";
-        const token = "Berear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzNDNlMjQ0ZmMzOWNhYTk2MjNiZDAwNCIsImlhdCI6MTY3MzMzNDc5NiwiZXhwIjoxNjczMzU2Mzk2fQ.C-v7nP1-nTPBoOILRZDCbjYXN69vMS1R193l3QQ04dA"
+        let headers = {}
+        if (localStorage.token) {
+          headers = { 'Content-type': 'application/json',
+                      'Authorization': localStorage.token }
+        }
 
-        // API Implement using POST Method
+        // API Call - POST Method
         fetch(url, {
           method: 'POST',
           body: JSON.stringify(data),
-          headers: {
-            'Content-type': 'application/json',
-            'Authorization': token
-          },
+          headers: headers,
         })
         .then((response) => {
           console.log("Add response----", response);
