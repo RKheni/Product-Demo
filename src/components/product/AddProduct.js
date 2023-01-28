@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import commonStyles from "./productCSS/CommonStyles.module.css"
 import { useNavigate } from 'react-router-dom'
 
-
 function AddProduct() {
 
   const navigate = useNavigate();
 
     const [name, setName] = useState('');
     const [brand, setBrand] = useState('');
-    const [price, setPrice] = useState('');
+    const [sku, setSku] = useState('');
+    const [basePrice, setBasePrice] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
     const [isActive, setIsActive] = useState(true);
@@ -22,8 +22,11 @@ function AddProduct() {
         if(id === "brand"){
           setBrand(value);
         }
-        if(id === "price"){
-          setPrice(value);
+        if(id === "sku"){
+          setSku(value);
+        }
+        if(id === "basePrice"){
+          setBasePrice(value);
         }
         if(id === "description"){
           setDescription(value);
@@ -40,12 +43,13 @@ function AddProduct() {
       const submitHandler = (e) => {
         e.preventDefault();
         
-        const url = "https://cricketecommerce.onrender.com/Products";
+        const url = "https://cricketecommerce.onrender.com/products";
 
         const data = {
           name: name,
           brand: brand,
-          price: price,
+          sku: sku,
+          basePrice: basePrice,
           description: description,
           category: category,
           isActive: isActive,
@@ -53,8 +57,10 @@ function AddProduct() {
 
         let headers = {}
         if (localStorage.token) {
+          let saveToken = `Bearer ${localStorage.token}` 
           headers = { 'Content-type': 'application/json',
-                      'Authorization': localStorage.token }
+                      'Authorization': saveToken 
+                    }
         }
 
         // API Call - POST Method
@@ -102,11 +108,21 @@ function AddProduct() {
              </div>
          </div>
          <div className="form-group row my-2">
-             <label className="col-sm-5 col-form-label">Price</label>
+             <label className="col-sm-5 col-form-label">SKU</label>
+             <div className="col-sm-7">
+                 <input type="text" className="form-control" 
+                   id='sku'
+                   value={sku}
+                   onChange = {handleInputChange}
+                 />
+             </div>
+         </div>
+         <div className="form-group row my-2">
+             <label className="col-sm-5 col-form-label">Base Price</label>
              <div className="col-sm-7">
                  <input type="number" className="form-control" 
-                   id='price'
-                   value={price}
+                   id='basePrice'
+                   value={basePrice}
                    onChange = {handleInputChange}
                  />
              </div>
@@ -121,6 +137,9 @@ function AddProduct() {
                  />
              </div>
          </div>
+         {
+          category.map
+         }
          <div className="form-group row my-2">
              <label className="col-sm-5 col-form-label">Category</label>
              <div className="col-sm-7">
@@ -142,7 +161,6 @@ function AddProduct() {
              </div>
          </div>
          <br/>  
-         {/* <b className={commonStyles.error}>{errorMsg}</b> */}
          
          <div className="form-group row">
              <button type="submit" className="col-12 btn btn-primary">

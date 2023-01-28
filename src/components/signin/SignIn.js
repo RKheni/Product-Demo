@@ -32,12 +32,10 @@ function Login() {
           },
         })
         .then(response => { return response.json() })
-        .then(data => {
-          localStorage.setItem("token", data.token)
-          // logResponse("loginResponse", `localStorage set with token value: ${data.token}`)
-        })
         .then((res) => {
-          console.log(res)
+          console.log(res);
+          // token stored in local storage
+          localStorage.setItem("token", res.token);
           // Navigate to Product page
            navigate('/productPage');
         })
