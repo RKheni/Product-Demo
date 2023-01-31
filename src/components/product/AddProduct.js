@@ -8,8 +8,8 @@ function AddProduct() {
 
     const [name, setName] = useState('');
     const [brand, setBrand] = useState('');
-    const [sku, setSku] = useState('');
-    const [basePrice, setBasePrice] = useState('');
+    const [SKU, setSKU] = useState('');
+    const [base_price, setBase_price] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState([]);
     const [isActive, setIsActive] = useState(true);
@@ -22,11 +22,11 @@ function AddProduct() {
         if(id === "brand"){
           setBrand(value);
         }
-        if(id === "sku"){
-          setSku(value);
+        if(id === "SKU"){
+          setSKU(value);
         }
-        if(id === "basePrice"){
-          setBasePrice(value);
+        if(id === "base_price"){
+          setBase_price(value);
         }
         if(id === "description"){
           setDescription(value);
@@ -48,8 +48,8 @@ function AddProduct() {
         const data = {
           name: name,
           brand: brand,
-          sku: sku,
-          basePrice: basePrice,
+          SKU: SKU,
+          base_price: base_price,
           description: description,
           category: category,
           isActive: isActive,
@@ -111,8 +111,8 @@ function AddProduct() {
              <label className="col-sm-5 col-form-label">SKU</label>
              <div className="col-sm-7">
                  <input type="text" className="form-control" 
-                   id='sku'
-                   value={sku}
+                   id='SKU'
+                   value={SKU}
                    onChange = {handleInputChange}
                  />
              </div>
@@ -121,8 +121,8 @@ function AddProduct() {
              <label className="col-sm-5 col-form-label">Base Price</label>
              <div className="col-sm-7">
                  <input type="number" className="form-control" 
-                   id='basePrice'
-                   value={basePrice}
+                   id='base_price'
+                   value={base_price}
                    onChange = {handleInputChange}
                  />
              </div>

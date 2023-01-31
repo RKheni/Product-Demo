@@ -36,7 +36,7 @@ function ProductTable({products, handleClick}) {
                 <tbody>
                     {products.map((val, index) => {
                         return (
-                        <tr key={index} onClick={handleClick}>
+                        <tr key={index} onClick={(e) => {handleClick(val)}}>
                           <td>{index + 1}</td>
                           <td>{val._id}</td>
                           <td>{val.name}</td>

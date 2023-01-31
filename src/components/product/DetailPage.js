@@ -1,17 +1,37 @@
 import React from 'react'
+import Commonstyles from "./productCSS/CommonStyles.module.css"
 
 function DetailPage({selectedProduct}) {
   return (
-    <>
-      <h1>Selected Product Details</h1>
-      <p>ID: {selectedProduct._id}</p>
-      <p>Name: {selectedProduct.name}</p>
-      <p>Brand: {selectedProduct.brand}</p>
-      <p>SKU: {selectedProduct.SKU}</p>
-      <p>Base Price: {selectedProduct.base_price}</p>
-      <p>Description: {selectedProduct.description}</p>
-      <p>Category: {selectedProduct.category}</p>
-    </>
+    <form className={Commonstyles.form} >
+      <h3 className={Commonstyles.title}>Selected Product Details</h3>
+
+      <table className="table table-bordered">
+                <thead>
+                    <tr>
+                      <th scope="col">ID</th>
+                      <th scope="col">Name</th>
+                      <th scope="col">Brand</th>
+                      <th scope="col">SKU</th>
+                      <th scope="col">Base Price</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Category</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>{selectedProduct._id}</td>
+                    <td>{selectedProduct.name}</td>
+                    <td>{selectedProduct.brand}</td>
+                    <td>{selectedProduct.SKU}</td>
+                    <td>{selectedProduct.base_price}</td>
+                    <td>{selectedProduct.description}</td>
+                    <td>{selectedProduct.category}</td>
+                  </tr>
+                </tbody>
+        </table>
+    </form>
   )
 }
 

@@ -33,7 +33,7 @@ function ProductPage() {
 
   return (
     <div className={Commonstyles.container}>
-        {selectedProduct.id ? (
+        {selectedProduct._id ? (
         <DetailPage selectedProduct={selectedProduct} />
       ) : (
         <ProductTable products={products} handleClick={handleClick} />
