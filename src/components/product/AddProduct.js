@@ -11,7 +11,7 @@ function AddProduct() {
     const [sku, setSku] = useState('');
     const [basePrice, setBasePrice] = useState('');
     const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
+    const [category, setCategory] = useState([]);
     const [isActive, setIsActive] = useState(true);
 
     const handleInputChange = e => {
@@ -32,7 +32,7 @@ function AddProduct() {
           setDescription(value);
         }
         if(id === "category"){
-          setCategory(value);
+          setCategory([...category, value]);
         }
         if(id === "isActive"){
           setIsActive(value);
@@ -137,18 +137,15 @@ function AddProduct() {
                  />
              </div>
          </div>
-         {
-          category.map
-         }
          <div className="form-group row my-2">
-             <label className="col-sm-5 col-form-label">Category</label>
-             <div className="col-sm-7">
-                 <input type="text" className="form-control" 
-                   id='category'
-                   value={category}
-                   onChange = {handleInputChange}
-                 />
-             </div>
+            <label className="col-sm-5 col-form-label">Category</label>
+            <div className="col-sm-7">
+                <input type="text" className="form-control" 
+                  id='category'
+                  value={category}
+                  onChange = {handleInputChange}
+                />
+            </div>
          </div>
          <div className="form-group row my-2">
              <label className="col-sm-5 col-form-label">isActive</label>
@@ -168,7 +165,7 @@ function AddProduct() {
              </button>
          </div>
      </form>
-   </div>
+    </div>
    </>
   )
 }

@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react'
 import styles from "./productCSS/ProductPage.module.css"
 import Commonstyles from "./productCSS/CommonStyles.module.css"
 import { useNavigate } from 'react-router-dom'
-// import { Modal, Button } from 'react-bootstrap'
 
 function ProductPage() {
 
   const navigate = useNavigate();
   
   const [products, setProducts] = useState([]);
+  // const [modalData, setModalData] = useState({});
 
     const getData = () => {
       const url = "https://cricketecommerce.onrender.com/Products/all";
@@ -27,6 +27,14 @@ function ProductPage() {
     useEffect(() => {
         getData();
     }, []);
+
+    // const showDetail = (id) =>
+    // {
+      
+    //   fetch(`https://cricketecommerce.onrender.com/Products/all/${id}`)
+    //   .then(resposne=> resposne.json())
+    //   .then(res=>setModalData(res?.data))
+    // }
 
   return (
     <div className={Commonstyles.container}>
@@ -76,38 +84,49 @@ function ProductPage() {
 
         {/* Modal Box 
  
-      <Modal show={modalOpen} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>{modalData.id}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <table className="table table-striped table-sm">
-            <thead className="thead-light">
-              <tr>
-                <th>Name</th>
-                <th>Brand</th>
-                <th>Price</th>
-                <th>Description</th>
-                <th>Category</th>
-                <th>isActive</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{modalData.name}</td>
-                <td>{modalData.brand}</td>
-                <td>{modalData.price}</td>
-                <td>{modalData.description}</td>
-                <td>{modalData.category}</td>
-                <td>{modalData.isActive}</td>
-              </tr>
-            </tbody>
-          </table>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}> Close </Button>
-        </Modal.Footer>
-      </Modal> */}
+        <div className="modal" id="myModal">
+        <div className="modal-dialog" style={{width:"700px"}}>
+          <div className="modal-content">
+            <div className="modal-header">
+              <h4 className="modal-title">Row No : {modalData._id}</h4>
+              <button type="button" className="close" data-dismiss="modal">&times;</button>
+            </div>
+             
+            <div className="modal-body">
+            <table className="table table-striped table-sm">
+                        <thead className="thead-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Brand</th>
+                                <th>SKU</th>
+                                <th>Base Price</th>
+                                <th>Description</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <tr >
+                              <td>{modalData._id}</td>
+                              <td>{modalData.name}</td>
+                              <td>{modalData.brand}</td>
+                              <td>{modalData.sku}</td>
+                              <td>{modalData.base_price}</td>
+                              <td>{modalData.description}</td>
+                              <td>{modalData.category}</td>
+                           </tr>
+                          
+                        </tbody>
+                    </table>
+            </div>
+             
+            <div className="modal-footer">
+              <button type="button" className="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+             
+          </div>
+        </div>
+      </div> */}
 
     </div>
   )
