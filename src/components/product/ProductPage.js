@@ -15,7 +15,7 @@ function ProductPage() {
           fetch(url)
           .then(response => response.json())
           .then(res => { 
-            console.log("Product Page res---", res);
+            // console.log("Product Page res---", res);
             setProducts(res?.data);
           }).catch(e => {
              console.log("e", e)
@@ -26,9 +26,9 @@ function ProductPage() {
         getData();
     }, []);
 
+    // selected product handle click 
     const handleClick = (product) => {
       setSelectedProduct(product);
-      console.log('Click product----')
     };
 
   return (

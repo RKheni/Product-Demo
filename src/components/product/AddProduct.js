@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import commonStyles from "./productCSS/CommonStyles.module.css"
 import { useNavigate } from 'react-router-dom'
+import categoryArray from './CategoryArray.json'
 
 function AddProduct() {
 
@@ -32,7 +33,7 @@ function AddProduct() {
           setDescription(value);
         }
         if(id === "category"){
-          setCategory([...category, value]);
+          setCategory(value);
         }
         if(id === "isActive"){
           setIsActive(value);
@@ -74,7 +75,7 @@ function AddProduct() {
           if(response.state === 200) {
             alert("Success");
           }
-          // Navigate to Home page
+          // Navigate to Product Page
           navigate('/productPage');
         }).catch(e => {
           console.log("Product Failed to Add due to: ", e.message)
@@ -140,11 +141,11 @@ function AddProduct() {
          <div className="form-group row my-2">
             <label className="col-sm-5 col-form-label">Category</label>
             <div className="col-sm-7">
-                <input type="text" className="form-control" 
-                  id='category'
-                  value={category}
-                  onChange = {handleInputChange}
-                />
+                <select className="form-control" id='category' value={category} onChange={handleInputChange} >
+                      {categoryArray.data.map((val, key) => (
+                        <option key={key} value={val._id}>{val.categoryName}</option>
+                      ))}
+                </select>
             </div>
          </div>
          <div className="form-group row my-2">

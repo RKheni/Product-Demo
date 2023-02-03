@@ -1,0 +1,69 @@
+{
+    "success": true,
+    "data": [
+        {
+            "_id": "63c8fabe7cc91cff5eac2f0f",
+            "categoryName": "Bat",
+            "isActive": true,
+            "createdAt": "2023-01-19T08:09:34.774Z",
+            "updatedAt": "2023-01-19T08:16:02.265Z",
+            "__v": 0
+        },
+        {
+            "_id": "63c8faf67cc91cff5eac2f18",
+            "categoryName": "Stumps",
+            "isActive": true,
+            "createdAt": "2023-01-19T08:10:30.639Z",
+            "updatedAt": "2023-01-19T08:16:02.265Z",
+            "__v": 0
+        },
+        {
+            "_id": "63c8fcef7cc91cff5eac2f34",
+            "categoryName": "Ball",
+            "isActive": true,
+            "createdAt": "2023-01-19T08:18:55.541Z",
+            "updatedAt": "2023-01-19T08:18:55.541Z",
+            "__v": 0
+        },
+        {
+            "_id": "63c8fcf77cc91cff5eac2f37",
+            "categoryName": "Cricket Bag",
+            "isActive": true,
+            "createdAt": "2023-01-19T08:19:03.761Z",
+            "updatedAt": "2023-01-19T08:19:03.761Z",
+            "__v": 0
+        },
+        {
+            "_id": "63c8fcfd7cc91cff5eac2f3a",
+            "categoryName": "Helmet",
+            "isActive": true,
+            "createdAt": "2023-01-19T08:19:09.793Z",
+            "updatedAt": "2023-01-19T08:19:09.793Z",
+            "__v": 0
+        },
+        {
+            "_id": "63c8fd047cc91cff5eac2f3d",
+            "categoryName": "Batting Pads",
+            "isActive": true,
+            "createdAt": "2023-01-19T08:19:16.795Z",
+            "updatedAt": "2023-01-19T08:19:16.795Z",
+            "__v": 0
+        },
+        {
+            "_id": "63c8fd107cc91cff5eac2f40",
+            "categoryName": "Batting Gloves",
+            "isActive": true,
+            "createdAt": "2023-01-19T08:19:28.309Z",
+            "updatedAt": "2023-01-19T08:19:28.309Z",
+            "__v": 0
+        },
+        {
+            "_id": "63c8fd187cc91cff5eac2f43",
+            "categoryName": "Abdominal Guard",
+            "isActive": true,
+            "createdAt": "2023-01-19T08:19:36.150Z",
+            "updatedAt": "2023-01-19T08:19:36.150Z",
+            "__v": 0
+        }
+    ]
+}
