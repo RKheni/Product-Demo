@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import commonStyles from "./productCSS/CommonStyles.module.css"
 import { useNavigate } from 'react-router-dom'
 import categoryArray from './CategoryArray.json'
+// import S3 from "aws-sdk/clients/s3";
+// import { v4 as uuidv4 } from "uuid";
 
 function AddProduct() {
 
@@ -13,38 +15,30 @@ function AddProduct() {
     const [base_price, setBase_price] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState([]);
+    const [images, setImages] = useState([]);
+    const [options, setOptions] = useState([]);
+    const [variants, setVariants] = useState([]);
     const [isActive, setIsActive] = useState(true);
 
     const handleInputChange = e => {
         const {id , value} = e.target;
-        if(id === "name"){
-          setName(value);
-        }
-        if(id === "brand"){
-          setBrand(value);
-        }
-        if(id === "SKU"){
-          setSKU(value);
-        }
-        if(id === "base_price"){
-          setBase_price(value);
-        }
-        if(id === "description"){
-          setDescription(value);
-        }
-        if(id === "category"){
-          setCategory(value);
-        }
-        if(id === "isActive"){
-          setIsActive(value);
-        }
+        if(id === "name"){ setName(value) }
+        if(id === "brand"){ setBrand(value) }
+        if(id === "SKU"){ setSKU(value) }
+        if(id === "base_price"){ setBase_price(value) }
+        if(id === "description"){ setDescription(value) }
+        if(id === "category"){ setCategory(value) }
+        if(id === "images"){ setImages(value) }
+        if(id === "options"){ setOptions(value) }
+        if(id === "variants"){ setVariants(value) }
+        if(id === "isActive"){ setIsActive(value) }
       }
 
       // Submit Handler Function 
       const submitHandler = (e) => {
         e.preventDefault();
         
-        const url = "https://cricketecommerce.onrender.com/products";
+        const url = "https://api-cricketecommerce.onrender.com/products";
 
         const data = {
           name: name,
@@ -52,7 +46,10 @@ function AddProduct() {
           SKU: SKU,
           base_price: base_price,
           description: description,
-          category: category,
+          category: [category],
+          images: [images],
+          options: [options],
+          variants: [variants],
           isActive: isActive,
         };
 
@@ -89,8 +86,8 @@ function AddProduct() {
      <form className={commonStyles.form} onSubmit={submitHandler}>
        <h3 className={commonStyles.title}>Add Product</h3>
          <div className="form-group row my-2">
-             <label className="col-sm-5 col-form-label">Name</label>
-             <div className="col-sm-7">
+             <label className="col-sm-4 col-form-label">Name</label>
+             <div className="col-sm-8">
                  <input type="text" className="form-control" 
                    id='name' 
                    value={name}
@@ -99,8 +96,8 @@ function AddProduct() {
              </div>
          </div>
          <div className="form-group row my-2">
-             <label className="col-sm-5 col-form-label">Brand</label>
-             <div className="col-sm-7">
+             <label className="col-sm-4 col-form-label">Brand</label>
+             <div className="col-sm-8">
                  <input type="text" className="form-control" 
                    id='brand'
                    value={brand}
@@ -109,8 +106,8 @@ function AddProduct() {
              </div>
          </div>
          <div className="form-group row my-2">
-             <label className="col-sm-5 col-form-label">SKU</label>
-             <div className="col-sm-7">
+             <label className="col-sm-4 col-form-label">SKU</label>
+             <div className="col-sm-8">
                  <input type="text" className="form-control" 
                    id='SKU'
                    value={SKU}
@@ -119,8 +116,8 @@ function AddProduct() {
              </div>
          </div>
          <div className="form-group row my-2">
-             <label className="col-sm-5 col-form-label">Base Price</label>
-             <div className="col-sm-7">
+             <label className="col-sm-4 col-form-label">Base Price</label>
+             <div className="col-sm-8">
                  <input type="number" className="form-control" 
                    id='base_price'
                    value={base_price}
@@ -129,8 +126,8 @@ function AddProduct() {
              </div>
          </div>
          <div className="form-group row my-2">
-             <label className="col-sm-5 col-form-label">Description</label>
-             <div className="col-sm-7">
+             <label className="col-sm-4 col-form-label">Description</label>
+             <div className="col-sm-8">
                  <textarea className="form-control" 
                    id='description'
                    value={description}
@@ -139,8 +136,8 @@ function AddProduct() {
              </div>
          </div>
          <div className="form-group row my-2">
-            <label className="col-sm-5 col-form-label">Category</label>
-            <div className="col-sm-7">
+            <label className="col-sm-4 col-form-label">Category</label>
+            <div className="col-sm-8">
                 <select className="form-control" id='category' value={category} onChange={handleInputChange} >
                       {categoryArray.data.map((val, key) => (
                         <option key={key} value={val._id}>{val.categoryName}</option>
@@ -149,8 +146,47 @@ function AddProduct() {
             </div>
          </div>
          <div className="form-group row my-2">
-             <label className="col-sm-5 col-form-label">isActive</label>
-             <div className="col-sm-7">
+             <label className="col-sm-4 col-form-label">Image</label>
+             <div className="col-sm-8">
+                 <input type="file" className="form-control" 
+                   id='images'
+                   value={images}
+                   onChange = {handleInputChange}
+                 />
+             </div>
+         </div>              
+         <div className="form-group row my-2">
+            <label className="col-sm-4 col-form-label">Options</label>  
+            <label className="col-sm-1 col-form-label">Name</label>
+             <div className="col-sm-3">
+                 <input type="text" className="form-control" 
+                   id='options'
+                   value={options}
+                   onChange = {handleInputChange}
+                 />
+             </div>
+             <label className="col-sm-1 col-form-label">Value</label>
+             <div className="col-sm-3">
+                 <input type="textarea" className="form-control" 
+                   id='options'
+                   value={options}
+                   onChange = {handleInputChange}
+                 />
+             </div>
+         </div>
+         <div className="form-group row my-2">
+            <label className="col-sm-4 col-form-label">Variants</label>
+            <div className="col-sm-8">
+                <input type="text" className="form-control" 
+                   id='variants'
+                   value={variants}
+                   onChange = {handleInputChange}
+                />
+            </div>
+         </div>
+         <div className="form-group row my-2">
+             <label className="col-sm-4 col-form-label">isActive</label>
+             <div className="col-sm-8">
                  <input type="text" className="form-control" 
                     id='isActive'
                     value={isActive}

@@ -1,12 +1,13 @@
 import React from 'react'
 import Commonstyles from "./productCSS/CommonStyles.module.css"
+import Table from "react-bootstrap/Table"
 
 function DetailPage({selectedProduct}) {
   return (
     <form className={Commonstyles.form} >
       <h3 className={Commonstyles.title}>Selected Product Details</h3>
 
-      <table className="table table-bordered">
+      <Table responsive hover bordered>
                 <thead>
                     <tr>
                       <th scope="col">ID</th>
@@ -30,7 +31,7 @@ function DetailPage({selectedProduct}) {
                     <td>{selectedProduct.category}</td>
                   </tr>
                 </tbody>
-        </table>
+        </Table>
     </form>
   )
 }

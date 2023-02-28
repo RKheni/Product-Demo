@@ -22,3 +22,12 @@ table, tr, th {
     border: 1px solid black;
     border-collapse: collapse;
   }
+
+  .search_bar {
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 8px;
+    font-size: 16px;
+    padding:5px 15px; 
+    margin-right: 5px;
+}

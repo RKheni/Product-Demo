@@ -7,9 +7,9 @@ function ProductPage() {
   
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState({});
-
+  
     const getData = () => {
-      const url = "https://cricketecommerce.onrender.com/Products/all";
+      const url = "https://api-cricketecommerce.onrender.com/Products/all";
 
         // API Call -  GET Method
           fetch(url)
@@ -30,7 +30,7 @@ function ProductPage() {
     const handleClick = (product) => {
       setSelectedProduct(product);
     };
-
+    
   return (
     <div className={Commonstyles.container}>
         {selectedProduct._id ? (
@@ -38,7 +38,6 @@ function ProductPage() {
       ) : (
         <ProductTable products={products} handleClick={handleClick} />
       )}
-
     </div>
   )
 }

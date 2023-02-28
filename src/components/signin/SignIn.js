@@ -13,7 +13,7 @@ function Login() {
    // SignIn Function  
    const handleSignin = (e) => {
       e.preventDefault();
-      const url = "https://cricketecommerce.onrender.com/User/login";
+      const url = "https://api-cricketecommerce.onrender.com/User/login";
 
       if(validate()) {
         console.log('check validation-----');
