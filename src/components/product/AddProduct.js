@@ -38,7 +38,7 @@ function AddProduct() {
       const submitHandler = (e) => {
         e.preventDefault();
         
-        const url = "https://api-cricketecommerce.onrender.com/products";
+        const url = "https://api.fixmytrim.au/Products";
 
         const data = {
           name: name,

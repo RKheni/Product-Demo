@@ -13,13 +13,13 @@ function Login() {
    // SignIn Function  
    const handleSignin = (e) => {
       e.preventDefault();
-      const url = "https://api-cricketecommerce.onrender.com/User/login";
+      const url = "https://api.fixmytrim.au/User/login";
 
       if(validate()) {
         console.log('check validation-----');
 
         const data = {
-          email: 'admin@name.com',
+          email: 'avanparvadiy@gmail.com',
           password: 'password',
           role: 'Admin'
         }

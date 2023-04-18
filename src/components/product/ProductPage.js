@@ -9,7 +9,7 @@ function ProductPage() {
   const [selectedProduct, setSelectedProduct] = useState({});
   
     const getData = () => {
-      const url = "https://api-cricketecommerce.onrender.com/Products/all";
+      const url = "https://api.fixmytrim.au/Products";
 
         // API Call -  GET Method
           fetch(url)
